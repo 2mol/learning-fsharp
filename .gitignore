@@ -1,0 +1,7 @@
+.ionide/
+.vscode/
+bin/
+obj/
+.fake
+
+.envrc
