@@ -5,3 +5,5 @@ obj/
 .fake
 
 .envrc
+.direnv/
+
