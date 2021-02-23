@@ -3,13 +3,12 @@
 open System
 open Npgsql.FSharp
 
-let connection  =
+let connection =
     Sql.host "localhost"
     |> Sql.port 5432
     |> Sql.username "juri"
     |> Sql.database "readnotes"
     |> Sql.config "Pooling=true" // optional Config for connection string
-
 
 type Thing = {
     Id: Guid
@@ -19,14 +18,8 @@ type Thing = {
     Link: string option
 }
 
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
-
 [<EntryPoint>]
 let main argv =
-    let message = from "F#" // Call the function
-    // printfn "Hello worldy %s" message
     let things =
         connection
         |> Sql.connectFromConfig
