@@ -6,11 +6,15 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 
 - [x] Hello World
 - [x] Postgres with `Npgsql.FSharp`
-    - Could use more advanced examples, like inserts etc.
+    - [ ] Could use more advanced examples, like inserts etc.
 - [ ] Postgres with `Dapper.FSharp`
-- [x] Giraffe Hello World
-- [ ] Suave Hello World
-- [ ] [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events) (with Suave)
-- [ ] MailboxProcessor
+- [ ] Firestore
+- [ ] Giraffe
+    - [x] Hello World
+    - [ ] Add and Configure a JSON library
+- [ ] Suave
+    - [ ] Hello World
+    - [ ] [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events)
 - [ ] Basic Async
+- [ ] MailboxProcessor
 - [x] Data Viz with `FSharp.Plotly`
