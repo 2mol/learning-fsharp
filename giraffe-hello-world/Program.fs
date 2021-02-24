@@ -33,5 +33,4 @@ let main args =
             .Run()
         0
     with ex ->
-        // Log.Emergency("Host terminated unexpectedly.", ex)
         1
