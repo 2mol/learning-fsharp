@@ -26,4 +26,5 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 - [ ] `Fsharp.Data`
 - [ ] `Thoth.Json` decoding pipelines
 - [ ] `Fsharp.SystemTextJson` (maybe add to Giraffe example)
+    - add case convention example
 - [ ] Scraping - Extracting data from websites.
