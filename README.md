@@ -13,7 +13,7 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
     - [x] Hello World
     - [ ] Add and Configure a JSON library
 - [ ] Suave
-    - [ ] Hello World
+    - [x] Hello World
     - [ ] [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events)
 - [ ] Basic Async
 - [ ] MailboxProcessor
