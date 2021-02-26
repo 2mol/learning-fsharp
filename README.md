@@ -18,6 +18,7 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 - [ ] Basic Async
 - [ ] MailboxProcessor
 - [x] Data Viz with `FSharp.Plotly`
+- [ ] Compile single-binary executables
 
 
 ### wishlist:
