@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>box_backend</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src/Config.fs" />
+    <Compile Include="src/Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsConfig" Version="2.1.6" />
+    <PackageReference Include="FSharp.SystemTextJson" Version="0.16.6" />
+    <PackageReference Include="Giraffe" Version="5.0.0-rc-6" />
+    <PackageReference Include="TypeShape" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>
