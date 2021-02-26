@@ -24,4 +24,6 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 ### wishlist:
 
 - [ ] `Fsharp.Data`
-- Scraping - Extracting data from websites.
+- [ ] `Thoth.Json` decoding pipelines
+- [ ] `Fsharp.SystemTextJson` (maybe add to Giraffe example)
+- [ ] Scraping - Extracting data from websites.
