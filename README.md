@@ -16,10 +16,10 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
     - [x] Hello World
     - [ ] [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events)
 - [ ] Basic Async
-- [ ] MailboxProcessor
+- [x] MailboxProcessor
 - [x] Data Viz with `FSharp.Plotly`
 - [ ] Compile single-binary executables
-- [ ] environment variables
+- [x] environment variables
 
 
 ### wishlist:
