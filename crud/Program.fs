@@ -8,12 +8,14 @@ open Microsoft.Extensions.Configuration
 open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.DependencyInjection
 
-open Database
-
 let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
   choose [
     GET >=> choose [
       route "/" >=> setStatusCode 200
+      route "/health" >=>
+        match Database.health with
+        | Ok () -> text "alive and up"
+        | Error err -> setStatusCode 500 >=> text $"internal server error: {err}"
       route "/hello" >=> json (dict [ "Hello", "World" ])
     ]
     POST >=> choose [
