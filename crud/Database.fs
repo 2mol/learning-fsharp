@@ -26,6 +26,7 @@ type Thing = {
 
 let initDb =
   connection
+  |> Sql.database "postgres"
   |> Sql.connectFromConfig
   |> Sql.query $"CREATE DATABASE {databaseName}"
   |> Sql.executeNonQuery
