@@ -37,7 +37,7 @@ let health =
     connection
     |> Sql.connectFromConfig
     |> Sql.query "SELECT 1 as up"
-    |> Sql.execute (fun read -> read.int "up")
+    |> Sql.executeRow (fun read -> read.int "up")
   match result with
   | Ok _ -> Ok ()
   | Error _ -> initDb

@@ -4,8 +4,9 @@ open System.Text.Json.Serialization
 open Giraffe
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
-open Microsoft.Extensions.Configuration
 open Microsoft.AspNetCore.Http
+open Microsoft.AspNetCore.Server.Kestrel.Core
+open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 
 let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
@@ -54,7 +55,10 @@ let configureServices (services: IServiceCollection) =
 let main args =
   let host =
     WebHostBuilder()
-      .UseKestrel(fun options -> options.Listen(IPAddress.Any, 5000))
+      .UseKestrel()
+      .UseKestrel(fun options -> options.Listen(IPAddress.Any, 8080))
+      // Kestrel HTTP2 is not yet available on MacOS!
+      // .ConfigureKestrel(fun options -> options.Listen(IPAddress.Any, 8080, (fun lo -> lo.Protocols <- HttpProtocols.Http2)))
       .Configure(fun app -> app.UseGiraffe routeHandlers)
       .ConfigureServices(configureServices)
       .Build()
