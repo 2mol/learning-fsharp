@@ -10,27 +10,31 @@ open Microsoft.Extensions.DependencyInjection
 
 let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
   choose [
+    // GETs should never modify any state.
+    // GETs should therefore also be idempotent.
     GET >=> choose [
       route "/" >=> setStatusCode 200
       route "/health" >=>
         match Database.health with
         | Ok () -> text "alive and up"
-        | Error err -> setStatusCode 500 >=> text $"internal server error: {err}"
+        | Error err -> setStatusCode 500 >=> text "internal server error, check logs for details."
       route "/hello" >=> json (dict [ "Hello", "World" ])
     ]
     POST >=> choose [
-      route "/echo" >=> text "echo"
-      route "/user" >=>
-        // saving a NEW user
-        setStatusCode 501 // not implemented
+      route "/echo" >=> text "echo" // TODO: echo back POST body
     ]
+    // PUTs are supposed to be idempotent.
     PUT >=> choose [
+      route "/user" >=>
+        // saving a new user
+        setStatusCode 501 // not implemented
     ]
     PATCH >=> choose [
       routef "/user/%i"
         // modify attributes on a user
         (fun id -> setStatusCode 501 >=> text ($"patch user {id}")) // not implemented
     ]
+    // DELETEs should be idempotent.
     DELETE >=> choose [
       route "/user" >=>
         // delete a (presumably existing) user
