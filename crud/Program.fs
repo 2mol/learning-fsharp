@@ -13,15 +13,18 @@ let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
     // GETs should never modify any state.
     // GETs should therefore also be idempotent.
     GET >=> choose [
-      route "/" >=> setStatusCode 200
+      route "/" >=> Successful.OK "hi there, welcome to my API 🌸"
       route "/health" >=>
         match Database.health with
-        | Ok () -> text "alive and up"
+        | Ok () -> text "API and database are alive and up"
         | Error err -> setStatusCode 500 >=> text "internal server error, check logs for details."
-      route "/hello" >=> json (dict [ "Hello", "World" ])
+
+      // a plain dict will do for json output
+      route "/example-hello" >=> json (dict [ "Hello", "World" ])
     ]
     POST >=> choose [
-      route "/echo" >=> text "echo" // TODO: echo back POST body
+      // Echo back POST body
+      route "/echo" >=> bindJson (fun bla -> Successful.OK bla)
     ]
     // PUTs are supposed to be idempotent.
     PUT >=> choose [
