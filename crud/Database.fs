@@ -30,17 +30,12 @@ let initDb =
   |> Sql.connectFromConfig
   |> Sql.query $"CREATE DATABASE {databaseName}"
   |> Sql.executeNonQuery
-  |> Result.map ignore
 
 let health =
-  let result =
-    connection
-    |> Sql.connectFromConfig
-    |> Sql.query "SELECT 1 as up"
-    |> Sql.executeRow (fun read -> read.int "up")
-  match result with
-  | Ok _ -> Ok ()
-  | Error _ -> initDb
+  connection
+  |> Sql.connectFromConfig
+  |> Sql.query "SELECT 1 as up"
+  |> Sql.executeRow (fun read -> read.int "up")
 
 // let doStuff =
 //     let things =

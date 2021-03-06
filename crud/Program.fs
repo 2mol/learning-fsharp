@@ -8,22 +8,31 @@ open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 
+
 let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
   choose [
+    // ------------------------------------------------------------------------
+    // Examples
+    //
+    // echo back the request body
+    // bindJson will give a 500 error if the JSON is invalid.
+    POST >=> route "/echo" >=> bindJson (fun bla -> Successful.OK bla)
+    // a plain dict will do for json output
+    GET >=> route "/example-hello" >=> json (dict [ "Hello", "World" ])
+    // ------------------------------------------------------------------------
+
     // GETs should never modify any state.
     // GETs should therefore also be idempotent.
     GET >=> choose [
       route "/" >=> Successful.OK "hi there, welcome to my API 🌸"
       route "/health" >=>
         match Database.health with
-        | Ok () -> text "API and database are alive and up"
-        | Error err -> setStatusCode 500 >=> text "internal server error, check logs for details."
-
-      // a plain dict will do for json output
-      route "/example-hello" >=> json (dict [ "Hello", "World" ])
+        | Ok _ -> text "API and database are alive and up"
+        | Error err -> setStatusCode 500
     ]
     POST >=> choose [
-      // Echo back POST body
+      // example where we echo back the request body
+      // bindJson will give a 500 error if the JSON is invalid.
       route "/echo" >=> bindJson (fun bla -> Successful.OK bla)
     ]
     // PUTs are supposed to be idempotent.
@@ -34,7 +43,7 @@ let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
     ]
     PATCH >=> choose [
       routef "/user/%i"
-        // modify attributes on a user
+        // modify attributes on an existng user
         (fun id -> setStatusCode 501 >=> text ($"patch user {id}")) // not implemented
     ]
     // DELETEs should be idempotent.
@@ -68,7 +77,6 @@ let main args =
       .Configure(fun app -> app.UseGiraffe routeHandlers)
       .ConfigureServices(configureServices)
       .Build()
-
   try
       host.Run()
       0
