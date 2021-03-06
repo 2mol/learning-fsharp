@@ -43,7 +43,7 @@ let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
     ]
     PATCH >=> choose [
       routef "/user/%i"
-        // modify attributes on an existng user
+        // modify attributes on an existing user
         (fun id -> setStatusCode 501 >=> text ($"patch user {id}")) // not implemented
     ]
     // DELETEs should be idempotent.
