@@ -1,7 +1,9 @@
+open System
 open System.Net
 open System.Text.Json.Serialization
 
 open Giraffe
+open FSharp.Control.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.Http
@@ -31,9 +33,6 @@ let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
         | Error err -> setStatusCode 500
     ]
     POST >=> choose [
-      // example where we echo back the request body
-      // bindJson will give a 500 error if the JSON is invalid.
-      route "/echo" >=> bindJson (fun bla -> Successful.OK bla)
     ]
     // PUTs are supposed to be idempotent.
     PUT >=> choose [
