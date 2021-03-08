@@ -1,9 +1,7 @@
-open System
 open System.Net
 open System.Text.Json.Serialization
 
 open Giraffe
-open FSharp.Control.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.Http
@@ -11,7 +9,10 @@ open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 
 
-let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
+let putNewUser (claims : AuthMockup.Claims) : HttpHandler =
+  setStatusCode 501 // not implemented
+
+let routeHandlers : HttpHandler =
   choose [
     // ------------------------------------------------------------------------
     // Examples
@@ -37,8 +38,8 @@ let routeHandlers : HttpFunc -> HttpContext -> HttpFuncResult =
     // PUTs are supposed to be idempotent.
     PUT >=> choose [
       route "/user" >=>
-        // saving a new user
-        setStatusCode 501 // not implemented
+        (AuthMockup.ensureClaims putNewUser)
+        // setStatusCode 501
     ]
     PATCH >=> choose [
       routef "/user/%i"

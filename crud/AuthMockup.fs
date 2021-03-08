@@ -13,16 +13,41 @@ open Microsoft.AspNetCore.Http
 let verifyUserToken (token : string) : Result<Guid, string> =
   Ok <| Guid.Parse "00000000-0000-0000-0000-000000000000"
 
-let ensureUser (next : HttpFunc) (ctx : HttpContext) =
+let verifyClaims (next : HttpFunc) (ctx : HttpContext) =
   // ensure the user token is valid, effectively verifying the claims within
   // this is good, but a function that would return the claims would be
   // better. It would force/nudge us to use this function whenever we want to
   // extract the claim data.
   task {
-    match Result.map verifyUserToken (ctx.GetRequestHeader "Authentication") with
+    match Result.bind verifyUserToken (ctx.GetRequestHeader "Authorization") with
     | Ok guid ->
       // TODO: somehow return the data as well
       return! next ctx
+    | Error err ->
+      // TODO: log the error
+      return! setStatusCode 401 earlyReturn ctx
+  }
+
+type Claims = {
+  UserId: Guid;
+  Email: string;
+  }
+
+let ensureClaims
+  // ensure the user token is valid, effectively verifying the claims within
+  // this is good, but a function that would return the claims would be
+  // better. It would force/nudge us to use this function whenever we want to
+  // extract the claim data.
+  (innerHandler : Claims -> HttpHandler)
+  (next : HttpFunc)
+  (ctx : HttpContext)
+  : HttpFuncResult
+  =
+  task {
+    match Result.bind verifyUserToken (ctx.GetRequestHeader "Authentication") with
+    | Ok guid ->
+      let claims = {UserId = guid; Email = ""}
+      return! innerHandler claims earlyReturn ctx
     | Error err ->
       // TODO: log the error
       return! setStatusCode 401 earlyReturn ctx
