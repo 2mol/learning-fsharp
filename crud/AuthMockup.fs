@@ -44,7 +44,7 @@ let ensureClaims
   : HttpFuncResult
   =
   task {
-    match Result.bind verifyUserToken (ctx.GetRequestHeader "Authentication") with
+    match Result.bind verifyUserToken (ctx.GetRequestHeader "Authorization") with
     | Ok guid ->
       let claims = {UserId = guid; Email = ""}
       return! innerHandler claims earlyReturn ctx
