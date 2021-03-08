@@ -1,11 +1,24 @@
 module Database
 
 open System
+open System.Collections.Generic
 open Npgsql.FSharp
 open System.Text.Json.Serialization
 
 // [<JsonFSharpConverter>]
 // type Example = { x: string; y: string list }
+
+type Gender =
+  Unicorn | Guns | Socialism
+
+type User = {
+    UserId : Guid
+    MandatorId : string
+    Email : string option
+    Gender : Gender
+    // Birthdate: Date
+    // Link: string option
+}
 
 let databaseName = "crud"
 
@@ -15,14 +28,6 @@ let connection =
     |> Sql.username "postgres"
     |> Sql.database databaseName
     |> Sql.config "Pooling=true" // optional Config for connection string
-
-type Thing = {
-    Id: Guid
-    Title: string
-    Author: string option
-    Year: int option
-    Link: string option
-}
 
 let initDb =
   connection
@@ -34,8 +39,13 @@ let initDb =
 let health =
   connection
   |> Sql.connectFromConfig
-  |> Sql.query "SELECT 1 as up"
-  |> Sql.executeRow (fun read -> read.int "up")
+  |> Sql.query "UPDATE users SET meta = @meta"
+  |> Sql.parameters [ "@meta", Sql.text "bla" ]
+  |> Sql.executeNonQuery
+
+let updateUserGeneric (attributes : IDictionary<string, string>) : Result<int, exn> =
+  Ok 1
+
 
 // let doStuff =
 //     let things =
