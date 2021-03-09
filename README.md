@@ -19,6 +19,7 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 - [x] Data Viz with `FSharp.Plotly`
 - [ ] Compile single-binary executables
 - [x] environment variables
+- [ ] `FsConfig`
 
 
 ### wishlist:
