@@ -74,7 +74,7 @@ let main args =
       .UseKestrel(fun options -> options.Listen(IPAddress.Any, 8080))
       // Kestrel HTTP2 is not yet available on MacOS!
       // .ConfigureKestrel(fun options -> options.Listen(IPAddress.Any, 8080, (fun lo -> lo.Protocols <- HttpProtocols.Http2)))
-      .Configure(fun app -> app.UseGiraffe routeHandlers)
+      .Configure(configureApp)
       .ConfigureServices(configureServices)
       .Build()
   try
