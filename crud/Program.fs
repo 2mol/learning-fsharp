@@ -55,6 +55,20 @@ let routeHandlers : HttpHandler =
     setStatusCode 404 >=> text "not found my friend"
   ]
 
+// routef:
+//
+// Char  Type
+// ----  ----
+// %b    bool
+// %c    char
+// %s    string
+// %i    int
+// %d    int64
+// %f    float/double
+// %O    Guid (including short GUIDs*)
+// %u    uint64 (formatted as a short ID*)
+//
+
 let configureApp (app: IApplicationBuilder) = app.UseGiraffe routeHandlers
 
 let configureServices (services: IServiceCollection) =
