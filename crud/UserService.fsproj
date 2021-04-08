@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Database.fs" />
-    <Compile Include="AuthMockup.fs" />
+    <Compile Include="Auth.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-module AuthMockup
+module Auth
 
 open System
 open FSharp.Control.Tasks

@@ -9,7 +9,7 @@ open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 
 
-let putNewUser (claims : AuthMockup.Claims) : HttpHandler =
+let putNewUser (claims : Auth.Claims) : HttpHandler =
   setStatusCode 501 // not implemented
 
 let routeHandlers : HttpHandler =
@@ -38,7 +38,7 @@ let routeHandlers : HttpHandler =
     // PUTs are supposed to be idempotent.
     PUT >=> choose [
       route "/user" >=>
-        (AuthMockup.ensureClaims putNewUser)
+        (Auth.ensureClaims putNewUser)
         // setStatusCode 501
     ]
     PATCH >=> choose [
