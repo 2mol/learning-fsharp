@@ -6,7 +6,7 @@ The rationale for why this is robust is as follows: For a single service that ha
 
 The following illustration visualized this:
 
-![](docs/api.svg)
+![](docs/api.png)
 
 For a lot of use cases, we truly get the best of both worlds:
 
