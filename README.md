@@ -6,7 +6,7 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 
 - [x] Hello World
 - [x] Postgres with `Npgsql.FSharp`
-    - [ ] Could use more advanced examples, like inserts etc.
+    - [x] Could use more advanced examples, like inserts etc.
 - [ ] Postgres with `Dapper.FSharp`
 - [ ] Firestore
 - [ ] Giraffe
@@ -24,8 +24,8 @@ The goal is to have an extensive collection of (compiling) code, that covers > 5
 
 ### wishlist:
 
-- [ ] `Fsharp.Data`
-- [ ] `Thoth.Json` decoding pipelines
-- [ ] `Fsharp.SystemTextJson` (maybe add to Giraffe example)
+- [x] `Fsharp.Data`
+- [x] `Thoth.Json` decoding pipelines
+- [x] `Fsharp.SystemTextJson` (maybe add to Giraffe example)
     - add case convention example
 - [ ] Scraping - Extracting data from websites.

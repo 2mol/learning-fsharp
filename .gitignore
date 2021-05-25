@@ -1,7 +1,6 @@
 .DS_Store
 
 .ionide/
-.vscode/
 bin/
 obj/
 .fake
