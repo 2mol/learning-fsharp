@@ -5,10 +5,12 @@ open System.Text.Json.Serialization
 
 type Question = {
   id : Guid
+
   [<JsonPropertyName("question_text")>]
   QuestionText : string
-  [<JsonPropertyName("correct_answer")>]
+
   correctAnswer : string
+
   [<JsonPropertyName("incorrect_answers")>]
   incorrectAnswers : string array
 }
