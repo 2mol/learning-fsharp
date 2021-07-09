@@ -20,4 +20,8 @@ let question = {
   incorrectAnswers = [| "a"; "b"; "c" |]
 }
 
-printfn "%A" <| JsonSerializer.Serialize(question)
+printfn "%s" <| JsonSerializer.Serialize(question)
+
+let str = """{"id":"de368d97-903c-4460-85a3-0b27d8fef453","question_text":"what isn't","correct_answer":"yes","incorrect_answers":["a","b","c"]}"""
+
+printfn "%A" <| JsonSerializer.Deserialize(str)
