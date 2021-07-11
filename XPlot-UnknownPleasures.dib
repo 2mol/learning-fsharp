@@ -12,10 +12,10 @@ open XPlot.Plotly
 
 #!fsharp
 
-let bla = CsvFile.Load(__SOURCE_DIRECTORY__ + "/data/pulsar.csv").Cache()
+let pulsar = CsvFile.Load(__SOURCE_DIRECTORY__ + "/data/pulsar.csv").Cache()
 
 #!fsharp
 
-bla.Rows
+pulsar.Rows
 |> Seq.map (fun row -> Seq.map float row.Columns |> Seq.indexed)
 |> Chart.Line
