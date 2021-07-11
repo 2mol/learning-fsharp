@@ -1,0 +1,45 @@
+#!fsharp
+
+#r "nuget:SharpVG"
+#r "nuget: FSharp.Data"
+#r "nuget: XPlot.Plotly"
+#r "nuget: XPlot.Plotly.Interactive"
+
+open System.IO
+open System.Text
+
+open FSharp.Data
+open SharpVG
+open XPlot.Plotly
+
+#!fsharp
+
+// let bla = CsvFile.Load(__SOURCE_DIRECTORY__ + "/data/pulsar.csv").Cache()
+
+#!fsharp
+
+// for row in bla.Rows do
+//     let blo = Seq.map float row.Columns
+//     // printfn "%A" blo
+//     Chart.Line blo
+
+
+// let ee =
+//     Seq.head bla.Rows
+//     |> (fun row -> row.Columns)
+//     |> Seq.map float
+//     |> Seq.indexed
+
+// let blo = Seq.map float <| Seq.head bla.Rows
+// printfn "%A" blo
+// Chart.Line blo
+
+// Chart.Line ee
+
+[|"rem", 5; "eat", 2|]
+|> Array.toSeq
+|> Chart.Pie
+
+#!fsharp
+
+// File.WriteAllText("out.svg", drawing.ToString(), Encoding.UTF8)
