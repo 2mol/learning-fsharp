@@ -1,0 +1,34 @@
+
+<DeviceRequest WorkstationID="POS" RequestID="8.8" RequestType="Output" SequenceID="0" xmlns="http://www.nrf-arts.org/IXRetail/namespace">
+  <Output OutDeviceTarget="E-Journal">
+      <E-Journal>
+          <ShopInfo>
+              <ShopLocation>Valora Digital AG</ShopLocation>
+              <ShopLocation>Hardturmstrasse 161</ShopLocation>
+              <ShopLocation>8005 Z??rich</ShopLocation>
+              <TerminalIdentifier>10133464</TerminalIdentifier>
+              <MerchantUserIdentifier>JERTEST00000700</MerchantUserIdentifier>
+          </ShopInfo>
+          <TransactionInfo>
+              <TransactionIdentifier>9142</TransactionIdentifier>
+              <ServiceLabelName>PURCHASE</ServiceLabelName>
+              <DateAndTime>2021-10-07T16:08:13</DateAndTime>
+              <AuthorisationCode>103128</AuthorisationCode>
+              <DetailedAmount>3.90</DetailedAmount>
+              <TotalAmount Currency="CHF">3.90</TotalAmount>
+              <TransactionResultText>00</TransactionResultText>
+              <AcquirerIdentifier>2</AcquirerIdentifier>
+              <ActivationSequenceNumber>6</ActivationSequenceNumber>
+              <TransactionRefNumber>71907629331</TransactionRefNumber>
+          </TransactionInfo>
+          <CardInfo>
+              <CardLabelName>MC CREDIT</CardLabelName>
+              <ApplicationIdentifier>A0000000041010</ApplicationIdentifier>
+              <CardNumber>XXXXXXXXXXXX0036</CardNumber>
+              <AppPANEnc>02F4B6B056E58D8174250CAB49D85108</AppPANEnc>
+              <AcqPubKeyInd>2</AcqPubKeyInd>
+          </CardInfo>
+          <DCCInfo/>
+      </E-Journal>
+  </Output>
+</DeviceRequest>
